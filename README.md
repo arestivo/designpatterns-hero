@@ -62,3 +62,25 @@ public void attack(Hero hero) {
     enemy.attack(hero);
 }
 ```
+
+## Command
+
+[Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/command) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/command)
+
+How by encapsulating behavior inside commands, we can control heroes and then, as if
+toying with entropy, we can reverse the arrow of time simply by stacking commands and
+then popping them out and undoing what they have done:
+
+```
+public class Hero {
+  public void execute(HeroCommand command) {
+    command.execute();
+    commands.add(command);
+  }
+
+  public void undo() {
+    HeroCommand command = commands.pop();
+    command.undo();
+  }
+}
+```
