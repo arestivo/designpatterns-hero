@@ -31,3 +31,34 @@ public class Spider extends Enemy {
     }
 }
 ```
+
+## Composite
+
+[Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/composite) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/composite)
+
+How a hoard of enemies can behave as a single enemy by using the *composite* pattern.
+A hoard of enemies contains a list of enemies (that can be of many different types) 
+but is also itself an enemy.
+
+```
+public Hoard(Position position) {
+  super(position);
+    this.enemies = new ArrayList<>();
+  }
+}
+```
+
+When moving, all enemies in the hoard move at the same time, when attacking they unite
+as a single foe:
+
+```
+public void moveUp() {
+  super.moveUp();
+    for (Enemy enemy : enemies) enemy.getPosition().moveTo(getPosition());
+}
+
+public void attack(Hero hero) {
+  for (Enemy enemy : enemies)
+    enemy.attack(hero);
+}
+```
