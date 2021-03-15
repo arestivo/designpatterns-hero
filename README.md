@@ -84,3 +84,37 @@ public class Hero {
   }
 }
 ```
+
+## Observer
+
+[Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/observer) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/observer)
+
+How enemies do not need to know who is observing them, as long as observers all follow
+the same interface. If that is the case, then telling an observer something changed is
+as easy as pie:
+
+```
+public class Enemy {
+  public void setEnergy(int energy) {
+    this.energy = energy;
+    for (EnemyObserver observer : observers)
+      observer.energyChanged(this);
+  }
+}
+```
+
+The *enemy* will never know how the *arena* is spying on it to kick it out of the game as
+soon as their energy reaches zero.
+
+```
+public Arena {
+  public void addEnemy(Enemy enemy) {
+    enemies.add(enemy);
+    enemy.addEnemyObserver(new EnemyObserver() {
+      public void energyChanged(Enemy enemy) {
+        if (enemy.getEnergy() <= 0) enemies.remove(enemy);
+      }
+    }
+  }
+}
+```
