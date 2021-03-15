@@ -118,3 +118,32 @@ public Arena {
   }
 }
 ```
+
+## Strategy
+
+[Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/strategy) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/strategy)
+
+How by combining strategies, we can have much more variety without much more work.
+An enemy only does whatever its strategy dictates, and different types of actions 
+can have different types of strategies, as long as they all have the same interface.
+
+```
+public interface AttackStrategy {
+    void attack(Enemy enemy, Hero hero);
+}
+
+public interface MoveStrategy {
+    void move(Enemy enemy, Arena arena);
+}
+```
+
+This way, not even the enemy needs to know how its strategy works when attacking the 
+unsuspecting hero:
+
+```
+public abstract class Enemy {
+  public void attack(Arena arena) {
+    this.attackStrategy.attack(this, arena.getHero());
+  }
+}
+```
