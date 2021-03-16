@@ -58,4 +58,20 @@ public abstract class Enemy {
     public void punch(Hero hero) {
         hero.decreaseEnergy(1);
     }
+
+    public void moveUp() {
+        this.position.moveUp();
+    }
+
+    public void moveRight() {
+        this.position.moveRight();
+    }
+
+    public void moveDown() {
+        this.position.moveDown();
+    }
+
+    public void moveLeft() {
+        this.position.moveLeft();
+    }
 }
