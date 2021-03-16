@@ -12,8 +12,8 @@ class MoveToCommandTest {
     void execute() {
         Hero hero = new Hero(new Position(10, 10), 10);
 
-        MoveToCommand moveToCommand = new MoveToCommand(hero, new Position(5, 5));
-        moveToCommand.execute();
+        MoveToCommand moveToCommand = new MoveToCommand(new Position(5, 5));
+        moveToCommand.execute(hero);
 
         assertEquals(new Position(5, 5), hero.getPosition());
     }
@@ -22,9 +22,9 @@ class MoveToCommandTest {
     void undo() {
         Hero hero = new Hero(new Position(10, 10), 10);
 
-        MoveToCommand moveToCommand = new MoveToCommand(hero, new Position(5, 5));
-        moveToCommand.execute();
-        moveToCommand.undo();
+        MoveToCommand moveToCommand = new MoveToCommand(new Position(5, 5));
+        moveToCommand.execute(hero);
+        moveToCommand.undo(hero);
 
         assertEquals(new Position(10, 10), hero.getPosition());
     }

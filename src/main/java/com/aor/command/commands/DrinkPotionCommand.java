@@ -5,21 +5,20 @@ import com.aor.command.potions.Potion;
 
 public class DrinkPotionCommand extends HeroCommand {
     private final Potion potion;
-    private final int originalEnergy;
+    private Integer originalEnergy;
 
-    public DrinkPotionCommand(Hero hero, Potion potion) {
-        super(hero);
+    public DrinkPotionCommand(Potion potion) {
         this.potion = potion;
-        this.originalEnergy = hero.getEnergy();
     }
 
     @Override
-    public void execute() {
-        potion.giveTo(getHero());
+    public void execute(Hero hero) {
+        originalEnergy = hero.getEnergy();
+        potion.giveTo(hero);
     }
 
     @Override
-    public void undo() {
-        getHero().setEnergy(this.originalEnergy);
+    public void undo(Hero hero) {
+        if (this.originalEnergy != null) hero.setEnergy(this.originalEnergy);
     }
 }

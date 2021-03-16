@@ -4,23 +4,21 @@ import com.aor.command.Hero;
 import com.aor.command.Position;
 
 public class MoveToCommand extends HeroCommand {
-    private final Position oldPosition;
     private final Position newPosition;
+    private Position oldPosition;
 
-    public MoveToCommand(Hero hero, Position position) {
-        super(hero);
+    public MoveToCommand(Position position) {
         this.newPosition = position;
-        this.oldPosition = new Position(0, 0);
-        this.oldPosition.moveTo(hero.getPosition());
     }
 
     @Override
-    public void execute() {
-        getHero().moveTo(newPosition);
+    public void execute(Hero hero) {
+        this.oldPosition = new Position(hero.getPosition().getX(), hero.getPosition().getY());
+        hero.moveTo(newPosition);
     }
 
     @Override
-    public void undo() {
-        getHero().moveTo(oldPosition);
+    public void undo(Hero hero) {
+        if (this.oldPosition != null) hero.moveTo(oldPosition);
     }
 }

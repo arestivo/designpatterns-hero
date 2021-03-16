@@ -6,18 +6,17 @@ import com.aor.command.weapons.Weapon;
 public class PickWeaponCommand extends HeroCommand {
     private final Weapon weapon;
 
-    public PickWeaponCommand(Hero hero, Weapon weapon) {
-        super(hero);
+    public PickWeaponCommand(Weapon weapon) {
         this.weapon = weapon;
     }
 
     @Override
-    public void execute() {
-        getHero().addWeapon(this.weapon);
+    public void execute(Hero hero) {
+        hero.addWeapon(this.weapon);
     }
 
     @Override
-    public void undo() {
-        getHero().removeWeapon(this.weapon);
+    public void undo(Hero hero) {
+        hero.removeWeapon(this.weapon);
     }
 }

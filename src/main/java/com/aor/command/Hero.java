@@ -49,12 +49,12 @@ public class Hero {
     }
 
     public void execute(HeroCommand command) {
-        command.execute();
+        command.execute(this);
         commands.add(command);
     }
 
     public void undo() {
         HeroCommand command = commands.pop();
-        command.undo();
+        command.undo(this);
     }
 }

@@ -54,9 +54,9 @@ class HeroTest {
     void execute() {
         Hero hero = new Hero(new Position(10, 10), 10);
 
-        hero.execute(new MoveToCommand(hero, new Position(5, 5)));
-        hero.execute(new DrinkPotionCommand(hero, new EnergyPotion()));
-        hero.execute(new PickWeaponCommand(hero, new Sword()));
+        hero.execute(new MoveToCommand(new Position(5, 5)));
+        hero.execute(new DrinkPotionCommand(new EnergyPotion()));
+        hero.execute(new PickWeaponCommand(new Sword()));
 
         assertEquals(new Position(5, 5), hero.getPosition());
         assertEquals(12, hero.getEnergy());
@@ -67,9 +67,9 @@ class HeroTest {
     void undo() {
         Hero hero = new Hero(new Position(10, 10), 10);
 
-        hero.execute(new MoveToCommand(hero, new Position(5, 5)));
-        hero.execute(new DrinkPotionCommand(hero, new EnergyPotion()));
-        hero.execute(new PickWeaponCommand(hero, new Sword()));
+        hero.execute(new MoveToCommand(new Position(5, 5)));
+        hero.execute(new DrinkPotionCommand(new EnergyPotion()));
+        hero.execute(new PickWeaponCommand(new Sword()));
 
         hero.undo();
         hero.undo();
