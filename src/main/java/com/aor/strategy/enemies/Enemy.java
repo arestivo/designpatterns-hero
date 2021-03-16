@@ -1,6 +1,5 @@
 package com.aor.strategy.enemies;
 
-import com.aor.strategy.Arena;
 import com.aor.strategy.Hero;
 import com.aor.strategy.Position;
 import com.aor.strategy.strategies.AttackStrategy;
@@ -21,18 +20,20 @@ public abstract class Enemy {
 
     /**
      * Moves according to the current move strategy.
-     * @param arena The arena the enemy is moving on.
+     *
+     * @param hero The hero in the arena.
      */
-    public void move(Arena arena) {
-        this.moveStrategy.move(this, arena);
+    public void move(Hero hero) {
+        this.moveStrategy.move(this, hero);
     }
 
     /**
      * Attacks the hero according to the current attack strategy.
-     * @param arena The arena the enemy is attacking on.
+     *
+     * @param hero The hero the enemy is attacking.
      */
-    public void attack(Arena arena) {
-        this.attackStrategy.attack(this, arena.getHero());
+    public void attack(Hero hero) {
+        this.attackStrategy.attack(this, hero);
     }
 
     public void pick(Weapon weapon) {

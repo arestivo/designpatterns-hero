@@ -1,14 +1,11 @@
 package com.aor.strategy.strategies;
 
-import com.aor.strategy.Arena;
 import com.aor.strategy.Hero;
 import com.aor.strategy.enemies.Enemy;
 
 public class FindHeroStrategy implements MoveStrategy {
     @Override
-    public void move(Enemy enemy, Arena arena) {
-        Hero hero = arena.getHero();
-
+    public void move(Enemy enemy, Hero hero) {
         if (hero.getPosition().equals(enemy.getPosition())) return;
 
         if (Math.random() < 0.5) {

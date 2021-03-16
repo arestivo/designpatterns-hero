@@ -1,35 +1,35 @@
 package com.aor.strategy.strategies;
 
-import com.aor.strategy.Arena;
+import com.aor.strategy.Hero;
 import com.aor.strategy.Position;
 import com.aor.strategy.enemies.Spider;
 import com.aor.strategy.weapons.Sword;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AlwaysPunchStrategyTest {
+    private Hero hero;
+    private Spider spider;
+
+    @BeforeEach
+    void setUp() {
+        hero = new Hero(new Position(10, 10), 10);
+        spider = new Spider(new Position(10, 10), null, new AlwaysPunchStrategy());
+    }
 
     @Test
     void noWeapon() {
-        Arena arena = new Arena();
-
-        Spider spider = new Spider(new Position(10, 10), null, new AlwaysPunchStrategy());
-        spider.attack(arena);
-
-        assertEquals(9, arena.getHero().getEnergy());
+        spider.attack(hero);
+        assertEquals(9, hero.getEnergy());
     }
 
     @Test
     void weapon() {
-        Arena arena = new Arena();
-
-        Spider spider = new Spider(new Position(10, 10), null, new AlwaysPunchStrategy());
         spider.pick(new Sword());
-
-        spider.attack(arena);
-
-        assertEquals(9, arena.getHero().getEnergy());
+        spider.attack(hero);
+        assertEquals(9, hero.getEnergy());
     }
 
 }
