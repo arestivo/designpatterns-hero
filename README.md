@@ -74,13 +74,13 @@ then popping them out and undoing what they have done:
 ```
 public class Hero {
   public void execute(HeroCommand command) {
-    command.execute();
+    command.execute(this);
     commands.add(command);
   }
 
   public void undo() {
     HeroCommand command = commands.pop();
-    command.undo();
+    command.undo(this);
   }
 }
 ```
@@ -133,7 +133,7 @@ public interface AttackStrategy {
 }
 
 public interface MoveStrategy {
-    void move(Enemy enemy, Arena arena);
+    void move(Enemy enemy, Hero hero);
 }
 ```
 
@@ -142,8 +142,8 @@ unsuspecting hero:
 
 ```
 public abstract class Enemy {
-  public void attack(Arena arena) {
-    this.attackStrategy.attack(this, arena.getHero());
+  public void attack(Hero hero) {
+    this.attackStrategy.attack(this, hero);
   }
 }
 ```
