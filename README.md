@@ -21,7 +21,7 @@ public abstract class Enemy {
 ```
 
 Concrete enemy class **Spider** overriding the **createWeapon** method and returning two 
-dangerous fangs as its weapon of choice:
+dangerous **fangs** as its weapon of choice:
 
 ```
 public class Spider extends Enemy {
@@ -36,9 +36,9 @@ public class Spider extends Enemy {
 
 [Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/composite) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/composite)
 
-How a hoard of enemies can behave as a single enemy by using the *composite* pattern.
-A hoard of enemies contains a list of enemies (that can be of many different types) 
-but is also itself an enemy.
+How a **Hoard** of enemies can behave as a single **Enemy** by using the *composite* pattern.
+A **Hoard** of enemies contains a **List** of enemies (of many different types) but is also 
+itself an **Enemy**.
 
 ```
 public Hoard(Position position) {
@@ -67,20 +67,20 @@ public void attack(Hero hero) {
 
 [Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/command) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/command)
 
-How by encapsulating behavior inside commands, we can control heroes and then, as if
-toying with entropy, we can reverse the arrow of time simply by stacking commands and
-then popping them out and undoing what they have done:
+How by encapsulating behavior inside **commands**, we can control **heroes** and then, as if
+toying with entropy, we can reverse the arrow of time simply by **stacking** commands and
+then **popping** them out and **undoing** what they have done:
 
 ```
 public class Hero {
   public void execute(HeroCommand command) {
-    command.execute();
+    command.execute(this);
     commands.add(command);
   }
 
   public void undo() {
     HeroCommand command = commands.pop();
-    command.undo();
+    command.undo(this);
   }
 }
 ```
@@ -89,8 +89,8 @@ public class Hero {
 
 [Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/observer) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/observer)
 
-How enemies do not need to know who is observing them, as long as observers all follow
-the same interface. If that is the case, then telling an observer something changed is
+How **enemies** do not need to know who is **observing** them, as long as **observers** all follow
+the same interface. If that's the case, then telling all **observers** something changed is
 as easy as pie:
 
 ```
@@ -103,8 +103,8 @@ public class Enemy {
 }
 ```
 
-The *enemy* will never know how the *arena* is spying on it to kick it out of the game as
-soon as their energy reaches zero.
+The **enemy** has no idea the **arena** is spying; it will be kicked out as soon as its energy 
+reaches zero.
 
 ```
 public Arena {
@@ -123,8 +123,8 @@ public Arena {
 
 [Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/strategy) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/strategy)
 
-How by combining strategies, we can have much more variety without much more work.
-An enemy only does whatever its strategy dictates, and different types of actions 
+How by combining **strategies**, we can have much more *variety* without much more work.
+An **enemy** only does whatever its **strategy** dictates, and different types of actions 
 can have different types of strategies, as long as they all have the same interface.
 
 ```
@@ -133,7 +133,7 @@ public interface AttackStrategy {
 }
 
 public interface MoveStrategy {
-    void move(Enemy enemy, Arena arena);
+    void move(Enemy enemy, Hero hero);
 }
 ```
 
@@ -142,8 +142,8 @@ unsuspecting hero:
 
 ```
 public abstract class Enemy {
-  public void attack(Arena arena) {
-    this.attackStrategy.attack(this, arena.getHero());
+  public void attack(Hero hero) {
+    this.attackStrategy.attack(this, hero);
   }
 }
 ```
