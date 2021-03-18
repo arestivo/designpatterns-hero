@@ -6,6 +6,6 @@ The *abstract class* **Enemy** (*subject*) can have many **EnemyObserver**s (obs
 The **Arena** (concrete observer), as an **EnemyObserver**, registers for updates on every *Enemy* that it contains. This way, when the *energy* level of an **Enemy** reaches zero, it knows to *remove*
 it, and when its position changes it knows that is time to *redraw*.
 
-![Factory-Method UML diagram](/images/uml/factory-method.svg)
+![Observer UML diagram](/images/uml/observer.svg)
 
 
