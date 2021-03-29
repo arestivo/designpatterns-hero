@@ -31,14 +31,15 @@ class SleepingHeroTest {
     @Test
     void cantEatFood() {
         hero.eatFood();
-        assertEquals(0, hero.getEnergy());
+        assertEquals(10, hero.getEnergy());
     }
 
     @Test
     void wakeUp() {
-        while(hero.getEnergy() <= 0)
+        while(hero.getEnergy() <= 10)
             hero.timePasses();
         hero.moveUp();
+        System.out.println(hero.getPosition().getY());
         assertEquals(new Position(10, 9), hero.getPosition());
     }
 }
