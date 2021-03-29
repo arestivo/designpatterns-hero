@@ -147,3 +147,18 @@ public abstract class Enemy {
   }
 }
 ```
+
+## State
+
+[Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/state) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/state)
+
+How heroes can be in different **states**; as if they had multiple personalities. Each 
+personality being responsible for the hero's behavior and even for personality changes. 
+
+```
+public Hero(Position position) {
+    this.position = position;
+    this.energy = 10;
+    this.state = new NormalState(this);
+}
+```
