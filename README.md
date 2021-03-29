@@ -166,3 +166,7 @@ public Hero(Position position) {
 ## Decorator
 
 [Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/decorator) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/decorator)
+
+## Adapter
+
+[Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/adapter) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/adapter)
