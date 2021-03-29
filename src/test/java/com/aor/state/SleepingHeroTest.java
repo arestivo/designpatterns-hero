@@ -39,8 +39,6 @@ class SleepingHeroTest {
         while(hero.getEnergy() <= 0)
             hero.timePasses();
         hero.moveUp();
-        System.out.println(hero.getPosition().getX());
-        System.out.println(hero.getPosition().getY());
         assertEquals(new Position(10, 9), hero.getPosition());
     }
 }
