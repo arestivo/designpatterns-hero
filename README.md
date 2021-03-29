@@ -162,3 +162,7 @@ public Hero(Position position) {
     this.state = new NormalState(this);
 }
 ```
+
+## Decorator
+
+[Code](https://github.com/arestivo/designpatterns-hero/tree/master/src/main/java/com/aor/decorator) | [Tests](https://github.com/arestivo/designpatterns-hero/tree/master/src/test/java/com/aor/decorator)
